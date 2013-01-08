@@ -1,0 +1,10 @@
+OBJS=bulletml_d.obj bulletmlparser-tinyxml.obj bulletmlparser.obj bulletmlrunner.obj bulletmlrunnerimpl.obj bulletmltree.obj calc.obj formula-variables.obj
+TOBJS=tinyxml.obj tinyxmlerror.obj tinyxmlparser.obj
+
+all: $(OBJS)
+	ilink32.exe -Tpd c0d32.obj, bulletml.dll,, cw32.lib import32.lib c0d32.obj $(OBJS) $(TOBJS) , bulletml.def
+	copy bulletml.dll ..
+
+.cpp.obj:
+	bcc32 -c -O -I. $<
+
